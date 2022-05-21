@@ -5,7 +5,7 @@ FROM python:3.8
 
 WORKDIR /testing
 
-COPY  Flask-Web-App-Tutorial .
+COPY  web-app .
 
 
 RUN pip install -r requirements.txt
