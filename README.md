@@ -1,6 +1,8 @@
 # Tech Challenge
 
 **Setup & Installation:**
+
+Run the command to clone the repo.
 git clone https://github.com/VijayThilak/tech_challenge.git 
 
 **To test the solution on Minikube locally**
