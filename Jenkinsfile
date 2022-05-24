@@ -1,25 +1,49 @@
- stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("vijaythilak/obird")
-    }
-
-    
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-    }
+pipeline {
+environment {
+registry = "vijaythilak/0bird"
+registryCredential = 'Docker_hub'
+dockerImage = ''
+}
+agent any
+stages {
+stage('Git Clone') {
+steps {
+git branch: 'main', credentialsId: 'Git_hub', url: 'https://github.com/VijayThilak/tech_challenge.git'
+}
+}
+stage('Building our image') {
+steps{
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
+stage('Docker Push') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+}
+}
+}
+stage('Cleaning up') {
+steps{
+sh "docker rmi $registry:$BUILD_NUMBER"
+}
+}
+stage('Waiting for approval'){
+steps{
+input('Do you want to proceed?')
+}
+}
+stage('Deploy on K8s') {
+steps {
+script {
+def TagId = input(id: 'TagId', message: 'some message', parameters: [string(name:'TagId')]) 
+//Run on Kubernetes master
+sh "ssh root@Kubernetes_master_IP helm upgrade --set image.tag=${TagId}  --install obird-deploy obird-helm/ --values obird/values.yaml"           }
+}
+}
+}
+}
