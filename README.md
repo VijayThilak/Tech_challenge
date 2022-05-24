@@ -8,6 +8,8 @@ git clone https://github.com/VijayThilak/tech_challenge.git
 cd  tech_challenge ; minikube image build -t obird-v1 . &&  helm upgrade --install orderbird-deploy  orderbird-helm/ --values orderbird-helm/values.yaml
 
 
+
+
 **To test the solution on K8s Environment with CI/CD?**
 
 Prerequisites
