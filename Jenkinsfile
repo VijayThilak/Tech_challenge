@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "vijaythilak/0bird"
+registry = "YourDockerhubAccount/YourRepository"
 registryCredential = 'Docker_hub'
 dockerImage = ''
 }
@@ -8,7 +8,7 @@ agent any
 stages {
 stage('Git Clone') {
 steps {
-git branch: 'main', credentialsId: 'Git_hub', url: 'https://github.com/VijayThilak/tech_challenge.git'
+git branch: 'main', credentialsId: 'Git_hub', url: 'https://github.com/YourGithubAccount/YourGithubRepository.git'
 }
 }
 stage('Building our image') {
@@ -43,9 +43,12 @@ script {
   
 // Enter the TagId 
 def TagId = input(id: 'TagId', message: 'some message', parameters: [string(name:'TagId')])  
+
+// Copy the obird-helm directory to Kubernetes master.
+sh "scp -rv obird-helm/ root@Kubernetes_Master_IP:/home "
   
 // Run on Kubernetes Master
-sh "ssh root@Kubernetes_Master_IP helm upgrade --set image.tag=${TagId}  --install obird-deploy obird-helm/ --values obird/values.yaml"          
+sh "ssh root@Kubernetes_Master_IP helm upgrade --set image.tag=${TagId}  --install obird-deploy /home/obird-helm/ --values obird/values.yaml"          
 }
 }
 }
