@@ -33,7 +33,7 @@ On the left, select Add Credentials
 Create a credential of type Username with password and add your docker username and password, for the ID, I used ’docker-repo-jenkinsci’
 
 
-**Create a Jenkins pipeline job using Jenkinsfile **
+**Create a Jenkins pipeline job using Jenkinsfile**
 
 https://raw.githubusercontent.com/VijayThilak/tech_challenge/main/Jenkinsfile and run the job with TagId.
 
