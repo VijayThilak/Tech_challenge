@@ -40,9 +40,13 @@ input('Do you want to proceed?')
 stage('Deploy on K8s') {
 steps {
 script {
-def TagId = input(id: 'TagId', message: 'some message', parameters: [string(name:'TagId')]) 
-//Run on Kubernetes master
-sh "ssh root@Kubernetes_master_IP helm upgrade --set image.tag=${TagId}  --install obird-deploy obird-helm/ --values obird/values.yaml"           }
+  
+// Enter the TagId 
+def TagId = input(id: 'TagId', message: 'some message', parameters: [string(name:'TagId')])  
+  
+// Run on Kubernetes Master
+sh "ssh root@Kubernetes_Master_IP helm upgrade --set image.tag=${TagId}  --install obird-deploy obird-helm/ --values obird/values.yaml"          
+}
 }
 }
 }
