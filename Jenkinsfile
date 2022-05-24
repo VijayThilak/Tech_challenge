@@ -18,7 +18,7 @@ dockerImage = docker.build registry + ":$BUILD_NUMBER"
 }
 }
 }
-stage('Docker Push') {
+stage('Push to Docker hub') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
@@ -37,7 +37,7 @@ steps{
 input('Do you want to proceed?')
 }
 }
-stage('Deploy on K8s') {
+stage('Deploy on K8s Environment') {
 steps {
 script {
   
