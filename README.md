@@ -30,7 +30,7 @@ From your dashboard, Go to Manage Jenkins —> Manage Credentials
 Under Stores scoped to Jenkins, select Jenkins
 Select Global Credentials (unrestricted)
 On the left, select Add Credentials
-Create a credential of type Username with password and add your docker username and password, for the ID, I used ’docker-repo-jenkinsci’
+Create a credential of type Username with password and add your docker username and password, for the ID.
 
 
 **Create a Jenkins pipeline job using Jenkinsfile**
