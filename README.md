@@ -5,8 +5,7 @@ git clone https://github.com/VijayThilak/tech_challenge.git
 
 How to test the solution on Minikube locally?
 
-#Build image inside Minikube:
-cd  web-app ; minikube image build -t obird-v1 . &&  helm upgrade --install orderbird-dep  orderbird-helm/ --values orderbird-helm/values.yaml
+cd  tech_challenge ; minikube image build -t obird-v1 . &&  helm upgrade --install orderbird-dep  orderbird-helm/ --values orderbird-helm/values.yaml
 
 
 # How to test the solution on K8s Environment?
