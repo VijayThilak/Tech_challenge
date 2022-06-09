@@ -42,7 +42,7 @@ steps {
 script {
   
 // Enter the TagId 
-def TagId = input(id: 'TagId', message: 'some message', parameters: [string(name:'TagId')])  
+def TagId = input(id: 'TagId', message: 'Enter the TagId', parameters: [string(name:'TagId')])  
 
 // Copy the obird-helm directory to Kubernetes master.
 sh "scp -rv obird-helm/ root@Kubernetes_Master_IP:/home "
