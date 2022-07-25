@@ -12,7 +12,7 @@ cd  tech_challenge ; minikube image build -t obird-v1 . &&  helm upgrade --insta
 
 
 
-**To test the solution on K8s Environment with CI/CD?**
+**To test the solution on K8s Environment with CI/CD**
 
 Prerequisites
 
