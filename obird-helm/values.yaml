@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: obird-v14
+  repository: kube_webapp
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
